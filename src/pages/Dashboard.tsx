@@ -1,9 +1,8 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Settings, 
-  MessageSquare, 
+import {
+  Settings, // Ícone Settings já importado e correto
+  MessageSquare,
   Calculator, 
   Network, 
   Search, 
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import SettingsPage from "./SettingsPage"; // Importe a página no início do arquivo
 
 const menuItems = [
   { id: "dashboard", title: "Dashboard", icon: BarChart3 },
@@ -22,6 +22,7 @@ const menuItems = [
   { id: "calculator", title: "Calculadora", icon: Calculator },
   { id: "stock", title: "Estoque", icon: Network },
   { id: "seo", title: "SEO Optimizer", icon: Search },
+  { id: "settings", title: "Configurações", icon: Settings },
 ];
 
 const Dashboard = () => {
@@ -40,6 +41,9 @@ const Dashboard = () => {
         return <StockContent />;
       case "seo":
         return <SEOContent />;
+      // Adicione o case abaixo
+      case "settings":
+        return <SettingsPage />;
       default:
         return <DashboardContent />;
     }
