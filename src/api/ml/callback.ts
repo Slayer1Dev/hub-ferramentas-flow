@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 // Função para obter o usuário da sessão a partir do cookie da Vercel
 async function getUserIdFromRequest(req: VercelRequest): Promise<string | null> {
   try {
-    const token = req.cookies.get('sb-access-token')?.value; // Nome padrão do cookie do Supabase
+    const token = req.cookies['sb-access-token']; // Nome padrão do cookie do Supabase
     if (!token) return null;
 
     const { data: { user } } = await createClient(
