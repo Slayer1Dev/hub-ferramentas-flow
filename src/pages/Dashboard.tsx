@@ -1,4 +1,4 @@
-// src/pages/Dashboard.tsx (Versão Final e Corrigida)
+// src/pages/Dashboard.tsx (Versão Definitiva)
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom"; // IMPORTANTE: Para navegação
+import { useNavigate } from "react-router-dom";
 
-// Componentes internos do Dashboard (sem o Card do ML)
+// Componentes de conteúdo (placeholders para simplicidade)
 const DashboardContent = () => (
   <div className="space-y-6">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -33,33 +33,32 @@ const DashboardContent = () => (
     </div>
   </div>
 );
-const ChatContent = () => ( <div>Conteúdo do Chat...</div> ); // Placeholder
-const CalculatorContent = () => ( <div>Conteúdo da Calculadora...</div> ); // Placeholder
-const StockContent = () => ( <div>Conteúdo do Estoque...</div> ); // Placeholder
-const SEOContent = () => ( <div>Conteúdo de SEO...</div> ); // Placeholder
+const ChatContent = () => ( <div className="text-white">Página de Respostas IA em construção...</div> );
+const CalculatorContent = () => ( <div className="text-white">Página da Calculadora em construção...</div> );
+const StockContent = () => ( <div className="text-white">Página de Estoque em construção...</div> );
+const SEOContent = () => ( <div className="text-white">Página de Otimizador SEO em construção...</div> );
 
-
-// Definição do Menu com o novo item "Configurações"
 const menuItems = [
   { id: "dashboard", title: "Dashboard", icon: BarChart3 },
   { id: "chat", title: "Respostas IA", icon: MessageSquare },
   { id: "calculator", title: "Calculadora", icon: Calculator },
   { id: "stock", title: "Estoque", icon: Network },
   { id: "seo", title: "SEO Optimizer", icon: Search },
-  { id: "settings", title: "Configurações", icon: Settings }, // NOVO ITEM AQUI
+  { id: "settings", title: "Configurações", icon: Settings }, // Link para Configurações
 ];
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
-  // Função para lidar com cliques no menu
   const handleMenuClick = (id: string) => {
     if (id === 'settings') {
-      navigate('/settings'); // Se for 'settings', navega para a página
+      navigate('/settings');
     } else {
-      setActiveTab(id); // Senão, apenas muda a aba de conteúdo
+      setActiveTab(id);
+      // Opcional: mudar a URL também para as abas, se desejar no futuro
+      // navigate(`/dashboard/${id}`); 
     }
   };
 
@@ -76,7 +75,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white flex">
-      {/* Sidebar */}
       <motion.div
         initial={false}
         animate={{ width: sidebarOpen ? 280 : 80 }}
@@ -88,14 +86,12 @@ const Dashboard = () => {
             {sidebarOpen && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xl font-bold text-white">Hub Tools</motion.div>)}
           </div>
         </div>
-
-        {/* Menu Items com a nova lógica de clique */}
         <nav className="flex-1 p-4">
           <div className="space-y-2">
             {menuItems.map((item) => (
               <motion.button
                 key={item.id}
-                onClick={() => handleMenuClick(item.id)} // LÓGICA DE CLIQUE AQUI
+                onClick={() => handleMenuClick(item.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${activeTab === item.id ? "bg-blue-500 text-white shadow-lg" : "text-gray-400 hover:text-white hover:bg-gray-800"}`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -106,7 +102,6 @@ const Dashboard = () => {
             ))}
           </div>
         </nav>
-
         <div className="p-4 border-t border-gray-800 space-y-2">
             <Button variant="ghost" className="w-full justify-start text-gray-400 hover:text-white hover:bg-gray-800" onClick={() => setSidebarOpen(!sidebarOpen)}>
                 {sidebarOpen ? <X className="w-5 h-5 mr-3" /> : <Menu className="w-5 h-5" />}
@@ -116,19 +111,16 @@ const Dashboard = () => {
             <Button variant="ghost" className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-gray-800"><LogOut className="w-5 h-5 mr-3" />{sidebarOpen && "Sair"}</Button>
         </div>
       </motion.div>
-
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
         <header className="bg-[#1a1a1a] border-b border-gray-800 p-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">{menuItems.find(item => item.id === activeTab)?.title || "Dashboard"}</h1>
+                    <h1 className="text-2xl font-bold text-white">{menuItems.find(item => item.id === activeTab)?.title || "Configurações"}</h1>
                     <p className="text-gray-400 mt-1">Gerencie suas vendas com inteligência</p>
                 </div>
                 <div className="flex items-center gap-4"><div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center"><User className="w-5 h-5 text-white" /></div></div>
             </div>
         </header>
-
         <main className="flex-1 p-6 overflow-auto">
           <AnimatePresence mode="wait">
             <motion.div key={activeTab} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
