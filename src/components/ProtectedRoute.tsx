@@ -1,18 +1,18 @@
-// src/components/ProtectedRoute.tsx
+// src/components/ProtectedRoute.tsx (Código Corrigido)
+
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '@/providers/AuthProvider';
 
 const ProtectedRoute = () => {
-  const { session, loading } = useAuth();
+  const { authStatus } = useAuth();
 
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
-
-  if (!session) {
+  // Nós não precisamos mais do 'loading' aqui, porque o AuthProvider já trata isso.
+  // Se o status final for 'unauthenticated', nós redirecionamos.
+  if (authStatus === 'unauthenticated') {
     return <Navigate to="/login" replace />;
   }
 
+  // Se for 'authenticated', permite o acesso.
   return <Outlet />;
 };
 
