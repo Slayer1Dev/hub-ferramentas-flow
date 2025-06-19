@@ -42,7 +42,7 @@ const Index = () => {
             <Button 
               variant="ghost" 
               className="text-gray-700 hover:text-blue-600"
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/login')}
             >
               <LogIn className="h-4 w-4 mr-2" />
               Login
@@ -50,7 +50,7 @@ const Index = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
                 className="bg-blue-400 hover:bg-blue-500 text-white rounded-2xl px-6"
-                onClick={() => navigate('/dashboard')}
+                onClick={() => navigate('/login')}
               >
                 Criar Conta
               </Button>
@@ -130,7 +130,7 @@ const Index = () => {
           >
             <Button 
               className="bg-blue-400 hover:bg-blue-500 text-white text-xl px-12 py-4 rounded-3xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/login')}
             >
               Comece Agora
             </Button>
