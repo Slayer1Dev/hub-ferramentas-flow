@@ -29,7 +29,7 @@ const Login = () => {
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
-          providers={['google', 'github']}
+          providers={['google']}
           localization={{
             variables: {
               sign_in: { email_label: 'Seu email', password_label: 'Sua senha', button_label: 'Entrar', social_provider_text: 'Entrar com {{provider}}' },
