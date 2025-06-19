@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Login from "@/pages/Login";
 import NotFound from "./pages/NotFound";
+import SettingsPage from "./pages/SettingsPage"; // <-- Adicione esta importação
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
 
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/settings" element={<SettingsPage />} /> {/* <-- Adicione esta rota */}
             </Route>
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
