@@ -1,11 +1,12 @@
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Settings, MessageSquare, Calculator, Network, Search, BarChart3, User, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const [scrollY, setScrollY] = useState(0);
@@ -38,12 +39,19 @@ const Index = () => {
             <h1 className="text-2xl font-bold text-gray-900">Hub de Ferramentas</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-gray-700 hover:text-blue-600">
+            <Button 
+              variant="ghost" 
+              className="text-gray-700 hover:text-blue-600"
+              onClick={() => navigate('/dashboard')}
+            >
               <LogIn className="h-4 w-4 mr-2" />
               Login
             </Button>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-blue-400 hover:bg-blue-500 text-white rounded-2xl px-6">
+              <Button 
+                className="bg-blue-400 hover:bg-blue-500 text-white rounded-2xl px-6"
+                onClick={() => navigate('/dashboard')}
+              >
                 Criar Conta
               </Button>
             </motion.div>
@@ -120,7 +128,10 @@ const Index = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Button className="bg-blue-400 hover:bg-blue-500 text-white text-xl px-12 py-4 rounded-3xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+            <Button 
+              className="bg-blue-400 hover:bg-blue-500 text-white text-xl px-12 py-4 rounded-3xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={() => navigate('/dashboard')}
+            >
               Comece Agora
             </Button>
           </motion.div>
